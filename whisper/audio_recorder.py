@@ -43,7 +43,7 @@ def timer_thread():
             return
         time.sleep(0.1)
         x += 0.1
-        print(f"{x} seconds of sound recorded")
+        print(f"\r{x} seconds of sound recorded\r")
 
 class RecordingThread(threading.Thread):
     def __init__(self):
