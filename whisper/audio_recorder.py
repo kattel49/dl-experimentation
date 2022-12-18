@@ -40,10 +40,10 @@ def timer_thread():
     x = 0
     while True:
         if kill_threads:
+            print(f"{x} seconds of audio recorded")
             return
-        time.sleep(0.1)
-        x += 0.1
-        print(f"\r{x} seconds of sound recorded\r")
+        time.sleep(0.5)
+        x += 0.5
 
 class RecordingThread(threading.Thread):
     def __init__(self):
