@@ -60,20 +60,24 @@ class TimingThread(threading.Thread):
         timer_thread()
 
 
-def run_threads(filename=None):
+def run_threads(filename="output.wav"):
     #recording_thread = threading.Thread(target=record_audio)
     #timing_thread = threading.Thread(target=timer_thread)
+    user_input = input("Do you want to record new audio(y/n): ")
+    if user_input.lower() == "n":
+        return
+    else:
+        if os.path.isfile(filename):
+            os.remove(filename)
     recording_thread = RecordingThread()
     timing_thread = TimingThread()
     recording_thread.start()
     timing_thread.start()
 
-    user_input = input("Press any key to stop recording audio\n")
+    user_input = input("Press Enter to stop recording audio\n")
     global kill_threads
-
-    if user_input:
-        print(f"Hi this is user input: {user_input}")
-        kill_threads = True
+    # print(f"Hi this is user input: {user_input}")
+    kill_threads = True
     
     recording_thread.join()
     timing_thread.join()
